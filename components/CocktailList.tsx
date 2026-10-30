@@ -41,7 +41,7 @@ export default function CocktailList({cocktails, initialSearch = ""}: {cocktails
     setPage(1);
   }
 
-  const inputStyle = "min-w-0 bg-white border border-gray-200 px-4 py-3 outline-none focus:border-black";
+  const inputStyle = "min-w-0 w-full bg-white lg:w-auto border border-gray-200 px-4 py-3 outline-none focus:border-black";
 
   const selectStyle = `${inputStyle} appearance-none pr-10 bg-no-repeat bg-[length:16px_16px] bg-[position:right_12px_center]`;
   const selectArrow = {
@@ -50,8 +50,8 @@ export default function CocktailList({cocktails, initialSearch = ""}: {cocktails
 
   return (
     <div className="flex flex-col flex-1">
-      <form onSubmit={(event) => event.preventDefault()} className="flex flex-row flex-wrap mb-6 gap-3">
-        <input type="search" aria-label="Search cocktails" placeholder="Search cocktails..." value={search} onChange={(event) => {setSearch(event.target.value); setPage(1)}} className={`${inputStyle} flex-1`}/>
+      <form onSubmit={(event) => event.preventDefault()} className="grid grid-cols-2 mb-6 gap-3 lg:flex lg:flex-row lg:flex-wrap">
+        <input type="search" aria-label="Search cocktails" placeholder="Search cocktails..." value={search} onChange={(event) => {setSearch(event.target.value); setPage(1)}} className={`${inputStyle} col-span-2 lg:flex-1`}/>
 
         <select aria-label="Category" value={category} onChange={(event) => {setCategory(event.target.value); setPage(1)}} className={selectStyle} style={selectArrow}>
           <option value="">All categories</option>
@@ -74,7 +74,7 @@ export default function CocktailList({cocktails, initialSearch = ""}: {cocktails
           <option value="za">Name: Z–A</option>
         </select>
 
-        <button type="button" aria-pressed={onlyFavourites} onClick={() => {setOnlyFavourites(!onlyFavourites); setPage(1)}} className={`px-4 py-3 border cursor-pointer ${onlyFavourites ? "bg-black text-white" : "bg-white border-gray-200"}`}>
+        <button type="button" aria-pressed={onlyFavourites} onClick={() => {setOnlyFavourites(!onlyFavourites); setPage(1)}} className={`min-w-0 px-3 py-3 border cursor-pointer sm:px-4 ${onlyFavourites ? "bg-black text-white" : "bg-white border-gray-200"}`}>
           {onlyFavourites ? "♥" : "♡"} Favourites ({favourites.length})
         </button>
         <button type="button" onClick={clearFilters} className="px-4 py-3 text-gray-500 underline cursor-pointer">Clear</button>
@@ -84,16 +84,16 @@ export default function CocktailList({cocktails, initialSearch = ""}: {cocktails
 
       {visible.length > 0 ? (
         <>
-          <div className="grid grid-cols-3 gap-x-6 gap-y-12 pb-12">
+          <div className="grid grid-cols-1 gap-x-6 gap-y-8 pb-12 sm:grid-cols-2 lg:grid-cols-3 lg:gap-y-12">
             {visible.map((cocktail) => (
               <CocktailCard key={cocktail.id} cocktail={cocktail}/>
             ))}
           </div>
 
-          <nav aria-label="Cocktail pages" className="flex justify-center items-center gap-5 pb-16">
-            <button onClick={() => setPage(currentPage - 1)} disabled={currentPage === 1} className="px-4 py-2 bg-black text-white cursor-pointer disabled:opacity-30 disabled:cursor-default">Previous</button>
-            <p className="text-sm">Page {currentPage} of {totalPages}</p>
-            <button onClick={() => setPage(currentPage + 1)} disabled={currentPage === totalPages} className="px-4 py-2 bg-black text-white cursor-pointer disabled:opacity-30 disabled:cursor-default">Next</button>
+          <nav aria-label="Cocktail pages" className="flex justify-center items-center gap-3 pb-12 sm:gap-5 sm:pb-16">
+            <button onClick={() => setPage(currentPage - 1)} disabled={currentPage === 1} className="min-h-11 px-3 py-2 bg-black sm:px-4 text-white cursor-pointer disabled:opacity-30 disabled:cursor-default">Previous</button>
+            <p className="text-sm text-center">Page {currentPage} of {totalPages}</p>
+            <button onClick={() => setPage(currentPage + 1)} disabled={currentPage === totalPages} className="min-h-11 px-3 py-2 bg-black sm:px-4 text-white cursor-pointer disabled:opacity-30 disabled:cursor-default">Next</button>
           </nav>
         </>
       ) : (

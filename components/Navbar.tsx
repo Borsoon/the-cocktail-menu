@@ -17,9 +17,9 @@ export default function Navbar() {
   }
 
   return (
-    <div className="flex w-full items-center justify-between py-10">
-      <Link href={"/"} className="text-2xl">THE COCKTAIL MENU</Link>
-      <button className="cursor-pointer" onClick={barrelRoll}>do a barrel roll</button>
+    <div className="flex flex-row w-full items-center justify-between gap-3 py-6 sm:py-10">
+      <Link href={"/"} className="text-sm whitespace-nowrap sm:text-2xl">THE COCKTAIL MENU</Link>
+      <button className="min-h-11 text-xs whitespace-nowrap cursor-pointer sm:text-base" onClick={barrelRoll}>do a barrel roll</button>
     </div>
   );
 }

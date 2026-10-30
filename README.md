@@ -9,4 +9,4 @@ Aplikacja webowa do przeglądania koktaili za pomocą [Solvro Cocktails API](htt
 - Typescript
 - Tailwindcss
 
-Strona jest przeznaczona do przeglądania na komputerach
+Strona jest responsywna — dostosowuje układ do telefonów, tabletów i komputerów.

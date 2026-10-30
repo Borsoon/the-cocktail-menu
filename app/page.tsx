@@ -36,7 +36,7 @@ export default async function Home({searchParams}: HomeProps){
   const cocktails = await getCocktails();
 
   return (
-    <div className="flex flex-col mx-auto w-full max-w-7xl min-h-screen px-6">
+    <div className="flex flex-col mx-auto w-full max-w-7xl min-h-screen px-4 sm:px-6">
       <Navbar/>
       <Hero/> 
       <CocktailList key={search} cocktails={cocktails} initialSearch={search}/>
